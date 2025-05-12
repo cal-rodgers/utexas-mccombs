@@ -827,7 +827,7 @@ function utmc_enqueue_script() {
 	$json_data = json_encode($options_data);
 
     // Localize the script with JSON data
-	wp_enqueue_script('utmc-script', get_template_directory_uri() . '/includes/fields/options.js', array('jquery'), null, true);
+	wp_enqueue_script('utmc-script', plugins_url('includes/fields/options.js', dirname(__FILE__)), array('jquery'), null, true);
 	wp_localize_script('utmc-script', 'utmc_option', $json_data);
 }
 add_action('wp_enqueue_scripts', 'utmc_enqueue_script');

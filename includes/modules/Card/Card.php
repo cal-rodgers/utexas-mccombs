@@ -1,32 +1,32 @@
 <?php
 
 class UTMC_Card extends ET_Builder_Module {
+    public $slug       = 'utmc_card';
+    public $vb_support = 'on';
 
-	public $slug       = 'utmc_card';
-	public $vb_support = 'on';
-
-	protected $module_credits = array(
-//		'module_uri' => 'https://www.simplea.com/divi/custom/card',
+    protected $module_credits = array(
         'author'     => 'Simple[A]',
-		'author_uri' => '',
-	);
+        'author_uri' => '',
+    );
 
-	public function init() {
-		$this->name = esc_html__( 'UT McCombs - Card', 'utmc_card' );
-	}
+    public function init() {
+        $this->name = esc_html__( 'UT McCombs - Card', 'utmc_card' );
+    }
 
-    //Module's Necessary Fields
-	public function get_fields() {
-		return array(
-
-            'heading'     => array(
+    /**
+     * Define module fields
+     *
+     * @return array
+     */
+    public function get_fields() {
+        return array(
+            'heading' => array(
                 'label'           => esc_html__( 'Card Heading', 'utmc_card' ),
                 'type'            => 'text',
                 'option_category' => 'basic_option',
                 'description'     => esc_html__( 'Card Heading here.', 'utmc_card' ),
                 'toggle_slug'     => 'main_content',
             ),
-
             'textarea' => array(
                 'label'           => esc_html__( 'Card Body', 'utmc_card' ),
                 'type'            => 'textarea',
@@ -34,8 +34,7 @@ class UTMC_Card extends ET_Builder_Module {
                 'description'     => esc_html__( 'Enter Card text here', 'utmc_card' ),
                 'toggle_slug'     => 'main_content',
             ),
-
-            'button_text'      => array(
+            'button_text' => array(
                 'label'           => et_builder_i18n( 'Link Text' ),
                 'type'            => 'text',
                 'option_category' => 'basic_option',
@@ -45,8 +44,7 @@ class UTMC_Card extends ET_Builder_Module {
                 'mobile_options'  => true,
                 'hover'           => 'tabs',
             ),
-
-            'button_url'       => array(
+            'button_url' => array(
                 'label'           => esc_html__( 'Link URL', 'utmc_card' ),
                 'type'            => 'text',
                 'option_category' => 'basic_option',
@@ -54,36 +52,21 @@ class UTMC_Card extends ET_Builder_Module {
                 'toggle_slug'     => 'main_content',
                 'dynamic_content' => 'url',
             ),
-
-//            'button_style'      => array(
-//                'label'           => et_builder_i18n( 'Button Style' ),
-//                'type'            => 'select',
-//                'option_category' => 'basic_option',
-//                'description'     => esc_html__( 'Select button style.', 'utmc_card' ),
-//                'options'         => array(
-//                    'link'         => esc_html__( 'Link', 'utmc_card' ),
-//                    'white'        => esc_html__( 'White', 'utmc_card' ),
-//                    'orange'         => esc_html__( 'Orange', 'utmc_card' ),
-//
-//                ),
-//                'toggle_slug'     => 'main_content',
-//
-//            ),
-            'variant'               => array(
+            'variant' => array(
                 'label'           => esc_html__( 'Variant', 'utmc_card' ),
                 'type'            => 'select',
                 'option_category' => 'layout',
                 'options'         => array(
-                    'image_top'      => esc_html__( 'Image Top', 'utmc_card' ),
-                    'orange'        => esc_html__( 'Orange', 'utmc_card' ),
-                    'white'        => esc_html__( 'White', 'utmc_card' ),
-                    'zoom'         => esc_html__( 'Zoom', 'utmc_card' ),
+                    'image_top' => esc_html__( 'Image Top', 'utmc_card' ),
+                    'orange'    => esc_html__( 'Orange', 'utmc_card' ),
+                    'white'     => esc_html__( 'White', 'utmc_card' ),
+                    'zoom'      => esc_html__( 'Zoom', 'utmc_card' ),
                 ),
                 'default'         => 'orange',
                 'tab_slug'        => 'advanced',
                 'toggle_slug'     => 'layout',
             ),
-            'cardimage'   => array(
+            'cardimage' => array(
                 'label'              => et_builder_i18n( 'Card Image' ),
                 'type'               => 'upload',
                 'option_category'    => 'basic_option',
@@ -97,7 +80,7 @@ class UTMC_Card extends ET_Builder_Module {
                 'mobile_options'     => true,
                 'hover'              => 'tabs',
             ),
-            'alt'          => array(
+            'alt' => array(
                 'label'           => esc_html__( 'Image Alt Text', 'utmc_card' ),
                 'type'            => 'text',
                 'option_category' => 'basic_option',
@@ -106,68 +89,67 @@ class UTMC_Card extends ET_Builder_Module {
                 'toggle_slug'     => 'image',
                 'dynamic_content' => 'text',
             ),
-
-		);
-	}
-
-    public function render( $attrs, $content = null, $render_slug ) {
-        $button_url     = $this->props['button_url'];
-        $button_text    = $this->_esc_attr( 'button_text', 'limited' );
-//        $button_style    = $this->props['button_style'];
-        $button = $this->render_button(
-            array(
-                'button_text'         => $button_text,
-                'button_url'          => $button_url,
-            )
         );
-
-        $variant        = $this->props['variant'];
-
-        $image = $this->props['cardimage'];
-        if ( $image ) {
-            $cardimage = sprintf('<div class="utm-card__image"><img src=%1$s alt="%2$s"></img></div>', $this->props['cardimage'], $this->props['alt']);
-        } else {
-            $cardimage = sprintf('');
-        }
-
-
-//        $buttrender  =  sprintf( '<div class="utm-card__link utm-card__buttonX">%1$s</div>', $button );
-
-        $wrappergroup =  '<div class="utm-card__group">';
-
-        $wrapperstart =  sprintf('<div data-variant-style="%1$s" class="utm-card utm-card--%1$s utm-card__outer"><div class="utm-card__wrapper">', $this->props['variant'] );
-
-//check for orange variant here - if orange display heading
-//        if ( $variant =='orange' ) {
-             $headlinemobile =  sprintf( '<div class="utm-card__headline__mobile">%1$s</div>', $this->props['heading'] );
-//        } else {
-//            $headlinemobile = sprintf('');
-//        }
-
-
-        $heading =  sprintf( '<div class="utm-card__content"><div class="utm-card__headline">%1$s</div>', $this->props['heading'] );
-
-
-        $content =  sprintf( '<div class="utm-card__body">%1$s</div>', $this->props['textarea'] );
-
-        $buttonwrapper = '<div class="utm-link__container"><div class="utm-card__link">';
-
-        //check for button content if not null
-        if ( $button_url&&$button_text ) {
-            $buttrender = sprintf( '<a href=%1$s class="utm-btn utm-card--%3$s utm-btn--link utm-btn--link-arrow">%2$s<span class="utm-btn--arrow"></span></a></div></div>', $button_url, $button_text, $variant  );
-        } else {
-            $buttrender = sprintf('</div></div>');
-        }
-
-
-        $wrapperend =  '</div></div></div></div>';
-
-        $module =  $wrapperstart.  $headlinemobile . $wrappergroup . $cardimage . $heading .  $content . $buttonwrapper. $buttrender . $wrapperend;
-
-        return $module;
-
     }
 
+    /**
+     * Render module
+     *
+     * @param array  $attrs
+     * @param string $content
+     * @param string $render_slug
+     *
+     * @return string
+     */
+    public function render( $attrs, $content = null, $render_slug ) {
+        $button_url  = $this->props['button_url'];
+        $button_text = $this->_esc_attr( 'button_text', 'limited' );
+        $variant     = $this->props['variant'];
+
+        // Render button
+        $button = $this->render_button(array(
+            'button_text' => $button_text,
+            'button_url'  => $button_url,
+        ));
+
+        // Build card image
+        $image = $this->props['cardimage'];
+        $cardimage = $image 
+            ? sprintf('<div class="utm-card__image"><img src=%1$s alt="%2$s"></img></div>', $this->props['cardimage'], $this->props['alt'])
+            : '';
+
+        // Build card structure
+        $wrappergroup  = '<div class="utm-card__group">';
+        $wrapperstart  = sprintf('<div data-variant-style="%1$s" class="utm-card utm-card--%1$s utm-card__outer"><div class="utm-card__wrapper">', $this->props['variant']);
+        $headlinemobile = sprintf('<div class="utm-card__headline__mobile">%1$s</div>', $this->props['heading']);
+        $heading       = sprintf('<div class="utm-card__content"><div class="utm-card__headline">%1$s</div>', $this->props['heading']);
+        $content       = sprintf('<div class="utm-card__body">%1$s</div>', $this->props['textarea']);
+        $buttonwrapper = '<div class="utm-link__container"><div class="utm-card__link">';
+
+        // Build button if URL and text are provided
+        $buttrender = ($button_url && $button_text)
+            ? sprintf('<a href=%1$s class="utm-btn utm-card--%3$s utm-btn--link utm-btn--link-arrow">%2$s<span class="utm-btn--arrow"></span></a></div></div>', 
+                $button_url, 
+                $button_text, 
+                $variant
+            )
+            : '</div></div>';
+
+        $wrapperend = '</div></div></div></div>';
+
+        // Assemble final module
+        $module = $wrapperstart . 
+                 $headlinemobile . 
+                 $wrappergroup . 
+                 $cardimage . 
+                 $heading . 
+                 $content . 
+                 $buttonwrapper . 
+                 $buttrender . 
+                 $wrapperend;
+
+        return $module;
+    }
 }
 
 new UTMC_Card;

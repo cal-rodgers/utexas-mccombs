@@ -39,10 +39,12 @@ This plugin includes the following custom Divi modules:
 
 - Node.js 14 (required for Apple Silicon M-series chip compatibility)
 - Yarn package manager
+- Local WordPress development environment
+- Divi theme installed and activated
 
-## Build Process
+## Development Workflow
 
-1. Switch to Node.js 14 if using nvm:
+1. Switch to Node.js 14:
    ```bash
    nvm use 14
    ```
@@ -52,16 +54,53 @@ This plugin includes the following custom Divi modules:
    yarn install
    ```
 
-3. Build the plugin:
+3. Start the development server:
+   ```bash
+   yarn start
+   ```
+   This will:
+   - Start a development server on port 3000
+   - Watch for changes in your module files
+   - Enable hot reloading
+
+4. Keep the development server running while:
+   - Editing modules in the Visual Builder
+   - Making changes to module files
+   - Testing module functionality
+
+## Build Process
+
+1. For development, start the server:
+   ```bash
+   yarn start
+   ```
+
+2. For production builds:
    ```bash
    yarn build
    ```
+   This generates:
+   - `scripts/builder-bundle.min.js`
+   - `scripts/frontend-bundle.min.js`
+   - `styles/style.min.css`
+   - `styles/backend-style.min.css`
 
-The build process will generate:
-- `scripts/builder-bundle.min.js`
-- `scripts/frontend-bundle.min.js`
-- `styles/style.min.css`
-- `styles/backend-style.min.css`
+3. For deployment, create a zip package:
+   ```bash
+   yarn zip
+   ```
 
-**Note:** Node.js 14 is specifically required for compatibility with the grunt-po2mo module and Sass compilation on Apple Silicon machines.
+## Troubleshooting
+
+- If you see node-sass errors, ensure you're using Node.js 14:
+  ```bash
+  nvm use 14
+  ```
+
+- If modules aren't loading in the Visual Builder:
+  1. Ensure the development server is running (`yarn start`)
+  2. Clear your browser cache
+  3. Refresh the WordPress admin page
+
+**Note:** Node.js 14 is specifically required for compatibility with divi-scripts, node-sass, and proper functioning on Apple Silicon machines.
 

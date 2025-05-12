@@ -1,0 +1,349 @@
+.courseCatalog--section {
+    margin-bottom: 0 !important;
+}
+
+.courseCatalog {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.courseCatalog table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.courseCatalog th,
+.courseCatalog td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    height: 48px !important;
+    vertical-align: middle !important;
+}
+
+.courseCatalog td > * {
+    vertical-align: middle !important;
+}
+
+.courseCatalog th,
+.courseCatalog th.courseCatalog--enroll {
+    background-color: #fff !important;
+    font-weight: bold;
+    border-bottom: 2px solid #000 !important;
+    padding: 12px !important;
+}
+
+/* Hide enroll header text in desktop view but keep the border */
+.courseCatalog th.courseCatalog--enroll {
+    color: transparent !important;
+    visibility: hidden !important;
+    height: 43px !important;
+    display: table-cell !important;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+    .courseCatalog table,
+    .courseCatalog thead,
+    .courseCatalog tbody,
+    .courseCatalog th,
+    .courseCatalog td,
+    .courseCatalog tr {
+        display: block;
+        width: 100%;
+    }
+
+    /* Special handling for instructors field in mobile */
+    .courseCatalog--instructors {
+        height: auto !important;
+        min-height: unset !important;
+        padding: 12px 12px 12px 50% !important;
+        display: block !important;
+        position: relative !important;
+    }
+
+    .courseCatalog--instructors:before {
+        position: absolute !important;
+        width: 45% !important;
+        height: auto !important;
+        min-height: unset !important;
+        top: 12px !important;
+        left: 12px !important;
+        transform: none !important;
+        white-space: normal !important;
+    }
+
+    .courseCatalog tbody td.courseCatalog--instructors {
+        height: auto !important;
+        min-height: unset !important;
+        text-align: right !important;
+        padding-left: 50% !important;
+    }
+
+    .courseCatalog--instructors > * {
+        text-align: right !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: unset !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        display: block !important;
+    }
+
+    .courseCatalog thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .courseCatalog tr {
+        margin-bottom: 1.5em;
+        border: 1px solid #ddd;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .courseCatalog tbody td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50% !important;
+        min-height: 1em;
+        text-align: right !important;
+    }
+
+    .courseCatalog td:before {
+        position: absolute;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        left: 12px;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        content: attr(data-label);
+        text-align: left;
+    }
+
+    /* Regular cells get the 45% width for labels */
+    .courseCatalog--concentration:before,
+    .courseCatalog--date:before,
+    .courseCatalog--location:before {
+        width: 45%;
+    }
+
+    /* Override padding for cells with 45% width labels */
+    .courseCatalog--concentration,
+    .courseCatalog--date,
+    .courseCatalog--location {
+        padding-left: 50% !important;
+    }
+
+    /* Style for regular fields */
+    .courseCatalog--concentration,
+    .courseCatalog--date,
+    .courseCatalog--location {
+        min-height: 48px !important;
+        padding: 12px 12px 12px 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        box-sizing: border-box !important;
+        justify-content: flex-end !important;
+    }
+
+    /* Right justify the text content */
+    .courseCatalog--concentration > *,
+    .courseCatalog--date > *,
+    .courseCatalog--location > * {
+        text-align: right !important;
+        width: 100% !important;
+    }
+
+    /* Add empty content for empty fields to maintain spacing */
+    .courseCatalog--location:empty:after {
+        content: "—";
+        color: #666;
+        opacity: 0.5;
+        text-align: right !important;
+        width: 100% !important;
+    }
+
+    /* Hide the class label and make content full width */
+    .courseCatalog--class:before {
+        display: none !important;
+        width: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        content: "" !important;
+        position: absolute !important;
+    }
+
+    .courseCatalog--class {
+        padding: 24px 16px !important;
+        font-size: 1.2em;
+        font-weight: bold;
+        border-bottom: 2px solid #eee !important;
+        text-align: center !important;
+        position: relative !important;
+        overflow: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 80px;
+        padding-left: 16px !important;
+    }
+
+    .courseCatalog--class a {
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        line-height: 1.5;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        hyphens: auto !important;
+        box-sizing: border-box !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        flex: 1 1 auto !important;
+    }
+
+    /* Remove any potential interference from general td styles */
+    .courseCatalog tbody td.courseCatalog--class {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /* Style for enroll cell */
+    .courseCatalog--enroll {
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 24px 16px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    /* Remove any potential interference from general td styles */
+    .courseCatalog tbody td.courseCatalog--enroll {
+        padding: 24px 16px !important;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .courseCatalog--enroll {
+            padding: 5px 16px !important;
+            min-height: unset !important;
+            height: auto !important;
+            width: 100% !important;
+        }
+
+        .courseCatalog tbody td.courseCatalog--enroll {
+            padding: 5px 16px !important;
+            min-height: unset !important;
+            height: auto !important;
+            width: 100% !important;
+        }
+
+        .courseCatalog--button {
+            min-height: unset !important;
+            height: auto !important;
+            width: 100% !important;
+            padding: 12px 16px !important;
+        }
+
+        .courseCatalog--enroll a,
+        .courseCatalog--enroll button {
+            width: 100% !important;
+            display: block !important;
+        }
+    }
+
+    .courseCatalog--button {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 8px 16px !important;
+        background-color: #bf5700;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    .courseCatalog--button:hover {
+        background-color: #9d4700;
+    }
+
+    /* Show enroll header in mobile view */
+    .courseCatalog th.courseCatalog--enroll {
+        display: block !important;
+        color: inherit !important;
+        visibility: visible !important;
+        height: auto !important;
+    }
+
+    /* Hide the enroll label on mobile */
+    .courseCatalog--enroll:before {
+        display: none;
+    }
+}
+
+/* Ensure concentration cell expands for longer text */
+.courseCatalog--concentration {
+    height: auto !important;
+    min-height: 48px !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+/* Mobile styles for concentration */
+@media screen and (max-width: 1024px) {
+    .courseCatalog--concentration {
+        height: auto !important;
+        min-height: unset !important;
+        padding: 12px 12px 12px 50% !important;
+        display: block !important;
+        position: relative !important;
+    }
+
+    .courseCatalog--concentration:before {
+        position: absolute !important;
+        width: 45% !important;
+        height: auto !important;
+        min-height: unset !important;
+        top: 12px !important;
+        left: 12px !important;
+        transform: none !important;
+        white-space: normal !important;
+    }
+
+    .courseCatalog tbody td.courseCatalog--concentration {
+        height: auto !important;
+        min-height: unset !important;
+        text-align: right !important;
+        padding-left: 50% !important;
+    }
+
+    .courseCatalog--concentration > * {
+        text-align: right !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: unset !important;
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        display: block !important;
+    }
+}

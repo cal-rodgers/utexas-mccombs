@@ -1,0 +1,150 @@
+/* Base table styles */
+.courseCatalog {
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+.courseCatalog table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+}
+
+.courseCatalog tbody tr:last-child td {
+    border-bottom: 1px solid #ddd;
+}
+
+.courseCatalog th,
+.courseCatalog td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    height: 48px !important;
+    vertical-align: middle !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    box-sizing: border-box !important;
+}
+
+.courseCatalog td > * {
+    vertical-align: middle !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 991px) {
+    .courseCatalog thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .courseCatalog tr {
+        margin-bottom: 1.5em;
+        border: 1px solid #ddd;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .courseCatalog tbody td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50% !important;
+        min-height: 1em;
+        text-align: right !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .courseCatalog td:before {
+        position: absolute;
+        top: 12px !important;
+        left: 12px;
+        width: 45%;
+        padding-right: 10px;
+        transform: none !important;
+        text-align: left !important;
+        font-weight: bold;
+        content: attr(data-label);
+        white-space: normal !important;
+    }
+
+    .courseCatalog--class,
+    .courseCatalog--concentration,
+    .courseCatalog--date,
+    .courseCatalog--location,
+    .courseCatalog--instructors {
+        min-height: 48px !important;
+        height: auto !important;
+        padding: 12px 12px 12px 50% !important;
+        display: block !important;
+        position: relative !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Right justify the text content */
+    .courseCatalog--class > *,
+    .courseCatalog--concentration > *,
+    .courseCatalog--date > *,
+    .courseCatalog--location > *,
+    .courseCatalog--instructors > * {
+        text-align: right !important;
+        width: 100% !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        white-space: normal !important;
+    }
+
+    /* Add empty content for empty fields to maintain spacing */
+    .courseCatalog--location:empty:after,
+    .courseCatalog--instructors:empty:after {
+        content: "—";
+        color: #666;
+        opacity: 0.5;
+        text-align: right !important;
+        width: 100% !important;
+    }
+
+    /* Remove margin from last row */
+    .courseCatalog tr:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* Center the enroll button cell */
+    .courseCatalog td:last-child {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 5px 16px !important;
+        border-bottom: none !important;
+        min-height: unset !important;
+        height: auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Remove the data-label from the button cell */
+    .courseCatalog td:last-child:before {
+        display: none !important;
+    }
+
+    /* Button styling */
+    .courseCatalog td:last-child .courseCatalog__button {
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0 !important;
+        display: inline-block !important;
+        padding: 12px 24px !important;
+        height: auto !important;
+        min-height: unset !important;
+        text-align: center !important;
+    }
+}
+
+/* Table responsive wrapper */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}

@@ -1,0 +1,268 @@
+=== UT McCombs - Custom Divi Modules ===
+WCR4
+= 2.01 =
+*Release Date 28 April 2025*
+* Enhanced SectionHeading module accessibility:
+  * Improved semantic HTML structure using <section> and <header> elements
+  * Added proper ARIA attributes with aria-labelledby
+  * Added role="region" to section elements for better screen reader navigation
+  * Implemented sequential heading IDs for better screen reader navigation
+  * Updated link container to use semantic <p> tag
+  * Added aria-hidden to decorative arrow elements
+* Enhanced SectionHeadingBox module accessibility:
+  * Converted outer div to semantic <section> element
+  * Added proper ARIA attributes with aria-labelledby
+  * Added role="region" to section elements for better screen reader navigation
+  * Added semantic <header> element while maintaining h4 heading level
+  * Added unique IDs for heading references
+  * Improved SVG accessibility by marking decorative elements
+  * Added proper HTML escaping for security
+* Enhanced LinkBox module accessibility and styling:
+  * Converted outer div to semantic <section> element with role="region"
+  * Added proper ARIA attributes with aria-labelledby
+  * Added semantic <header> element with h2 heading
+  * Implemented unique heading IDs using static counter
+  * Converted link container to semantic <ul> with proper list items
+  * Added role="list" to link container for better navigation
+  * Added aria-hidden to decorative border elements
+  * Added proper HTML escaping for security
+  * Improved link styling with flexbox layout
+  * Enhanced visual spacing and alignment
+  * Fixed bullet point display issues
+  * Added smooth transitions for interactive elements
+
+= 0.1.52 =
+*Release Date 15 January 2025*
+* Fixed instructor field display in mobile view:
+  - Properly handles multiple instructor names
+  - Maintains correct label alignment
+  - Enables text wrapping for long content
+  
+= 0.1.51 =
+*Release Date 15 January 2025*
+* Enhanced course table responsive design:
+  * Improved date formatting: Stacked dates with line breaks in table view, hyphenated in button data
+  * Added consistent white background and black bottom border to table headers
+  * Adjusted vertical alignment of all cell content
+  * Optimized enroll button display:
+    - Full width in mobile view
+    - Improved vertical padding (24px desktop, 5px mobile)
+    - Removed height constraints for better mobile display
+  * Fixed spacing issues in table layout
+
+= 0.1.50 =
+*Release Date 10 December 2024*
+* Updates to MaxCharacter - CTA, Split Hero - remove count
+
+= 0.1.49 =
+*Release Date 10 December 2024*
+* Updates to MaxCharacter - CTA, Split Hero
+
+= 0.0.48 =
+*Release Date 04 December 2024*
+* CourseTableAll - update so shows placeholder if no courses found for Concentration filter
+
+= 0.0.47 =
+*Release Date 06 November 2024*
+* CourseTableAll - add Concentration filter by slug (single or multiple)
+
+= 0.0.46 =
+*Release Date 16 October 2024*
+* Updates to CourseTableAll, CourseTable - add responsive class to markup
+
+= 0.0.45 =
+*Release Date 15 October 2024*
+* Updates to CourseTableAll - updated logic; CourseTable - add concentration by taxonomy
+
+= 0.0.44 =
+*Release Date 09 October 2024*
+* Updates to CourseTableAll - add concentration filter and updated logic
+
+= 0.0.43 =
+*Release Date 07 October 2024*
+* Updates to CourseTableAll
+
+= 0.0.41 =
+*Release Date 30 July 2024*
+* Updates to MaxChar - add CTA, Split Hero, Section Heading Box
+* remaining Hero, Alert, Card, HomeHero, JumpMenu, LinkBox, Quote
+
+= 0.0.40 =
+*Release Date 26 July 2024*
+* Updates to CourseTable - add On Demand Condition, add custom message field
+
+= 0.0.39 =
+*Release Date 23 July 2024*
+* Fixes for CourseTable, CourseTableAll - if there are no sessions triggers a message
+
+= 0.0.38 =
+*Release Date 15 July 2024*
+* Fixes for CTA to use wp_kses_post instead of esc_html
+
+= 0.0.37 =
+*Release Date 15 July 2024*
+* Fixes for CTA that were causing issues with Course
+
+= 0.0.36 =
+*Release Date 15 July 2024*
+* Fix unclosed div error on CourseTable and CourseTableAll
+
+= 0.0.35 =
+*Release Date 11 July 2024*
+* Change label for CourseTable (formerly BuyButton), CourseTableAll (formerly CourseTable)
+
+= 0.0.34 =
+*Release Date 24 June 2024*
+* Introduce BuyButton and Course Table modules for ecommerce, snipcart
+
+= 0.0.33 =
+*Release Date 14 June 2024*
+* Update FacultyLinks module and style
+
+= 0.0.32 =
+*Release Date -5 June 2024*
+* Introduce FacultyLinks module
+
+= 0.0.31 =
+*Release Date -9 May 2024*
+* Introduce maxChar capability with configurable backend, updates to modules
+
+= 0.0.30 =
+*Release Date -3 May 2024*
+* Updates to Quote, Add preliminary options
+
+= 0.0.29 =
+*Release Date -1 May 2024*
+* Updates to Hero, JumpMenu
+
+= 0.0.28 =
+*Release Date -30 April 2024*
+* Updates to LinkBox, Form Style
+
+= 0.0.27 =
+*Release Date -27 March 2024*
+* Updates to LinkBox, Form Style
+
+= 0.0.26 =
+*Release Date -25 March 2024*
+* Add HomeHero, Linkbox
+
+= 0.0.25 =
+*Release Date -20 March 2024*
+* Updates to Split Hero, Hero
+
+= 0.0.24 =
+*Release Date -19 March 2024*
+* Add Section Heading Box Module
+* Updates to Split Hero, Hero
+
+= 0.0.23 =
+*Release Date -12 March 2024*
+* Updates to Split Hero
+
+= 0.0.22 =
+*Release Date -07 March 2024*
+* Updates to Split Hero
+
+= 0.0.21 =
+*Release Date -06 March 2024*
+* Updates to Hero
+
+= 0.0.20 =
+*Release Date -05 March 2024*
+* Updates to Split Hero
+
+= 0.0.19 =
+*Release Date - 28 February 2024*
+* Updates to CTA, Card, Jump Menu, Alert for batch 2, updates global style sheet in child theme
+Adds Split Hero preliminary
+
+= 0.0.18 =
+*Release Date - 22 February 2024*
+* Updates to CTA, Jump Menu, updates global style sheet in child theme
+
+= 0.0.17 =
+*Release Date - 21 February 2024*
+* Adds CTA, Jump Menu Modules, global style sheet in child theme
+
+= 0.0.16 =
+*Release Date - 16 February 2024*
+* Additional updates to card and css specificity
+
+= 0.0.15 =
+*Release Date - 16 February 2024*
+* Updates to card and css specificity
+
+= 0.0.14 =
+*Release Date - 15 February 2024*
+* Updates to card
+
+= 0.0.13 =
+*Release Date - 13 February 2024*
+* Updates to hero
+
+= 0.0.12 =
+*Release Date - 12 February 2024*
+* Add Jump Menu preliminary
+* fix null title on section header
+* reorder link label, link url for Section Header, Hero, Quote
+
+= 0.0.11 =
+*Release Date - 09 February 2024*
+* Add Hero module
+
+= 0.0.10 =
+*Release Date - 06 February 2024*
+* Update statistic styles per QA
+
+
+= 0.0.9 =
+*Release Date - 05 February 2024*
+* Add Alert module
+
+= 0.0.8 =
+*Release Date - 05 February 2024*
+* Add video preliminary without video
+* fix button class on Section Header
+* remove links to help for modules
+* make Heading field labeling consistent
+
+= 0.0.7 =
+*Release Date - 04 February 2024*
+* Convert all modules to textarea, add footer section
+
+
+= 0.0.6 =
+*Release Date - 31 January 2024*
+* Added Quote Module - Initial release
+
+
+= 0.0.5 =
+*Release Date - 28 January 2024*
+* Updated Card - Add animated arrow buttons
+* Added Hero Module - Preliminary without Kicker
+
+
+= 0.0.4 =
+*Release Date - 26 January 2024*
+* Added Statistic Module
+* Added Added Section Header - Variant - Boxed - not complete
+
+= 0.0.3 =
+*Release Date - 24 January 2024*
+* Added Section Header - Variant - Standard with Link Arrow
+
+= 0.0.2 =
+*Release Date - 23 January 2024*
+
+* Added Card - Variant - Image Top
+* Added Card - Variant - White
+* Added Card - Variant - Image Top
+
+= 0.0.1 =
+*Release Date - 16 January 2024*
+* Added Card - Variant - Orange
+
+= 0.0.0 =
+*Release Date - 12 January 2024*
+* Initial Version for Testing

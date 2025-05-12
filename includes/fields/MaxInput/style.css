@@ -1,0 +1,7 @@
+.utmc-field .ch-count {
+  text-align:right;
+}
+
+.utmc-field .ch-count.redalert {
+  color:red;
+}

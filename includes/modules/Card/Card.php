@@ -11,6 +11,19 @@ class UTMC_Card extends ET_Builder_Module {
 
     public function init() {
         $this->name = esc_html__( 'UT McCombs - Card', 'utmc_card' );
+        
+        // Register scripts and styles
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+    }
+
+    public function enqueue_scripts() {
+        wp_enqueue_script(
+            'utmc-options',
+            plugin_dir_url(__FILE__) . '../../fields/options.js',
+            array('jquery'),
+            '1.0.0',
+            true
+        );
     }
 
     /**
@@ -105,48 +118,80 @@ class UTMC_Card extends ET_Builder_Module {
         $button_url  = $this->props['button_url'];
         $button_text = $this->_esc_attr( 'button_text', 'limited' );
         $variant     = $this->props['variant'];
-
-        // Render button
-        $button = $this->render_button(array(
-            'button_text' => $button_text,
-            'button_url'  => $button_url,
-        ));
-
-        // Build card image
+        $heading_text = $this->props['heading'];
+        $body_text = $this->props['textarea'];
         $image = $this->props['cardimage'];
-        $cardimage = $image 
-            ? sprintf('<div class="utm-card__image"><img src=%1$s alt="%2$s"></img></div>', $this->props['cardimage'], $this->props['alt'])
+        $alt_text = $this->props['alt'];
+
+        // Generate unique IDs for accessibility
+        $card_id = 'utm-card-' . uniqid();
+        $heading_id = $card_id . '-heading';
+
+        // Build card image with proper alt text handling
+        $cardimage = $image
+            ? sprintf(
+                '<div class="utm-card__image" role="presentation">' .
+                '<img src="%1$s" alt="%2$s" %3$s>' .
+                '</div>',
+                esc_url($image),
+                esc_attr($alt_text),
+                empty($alt_text) ? 'aria-hidden="true"' : ''
+            )
             : '';
 
-        // Build card structure
-        $wrappergroup  = '<div class="utm-card__group">';
-        $wrapperstart  = sprintf('<div data-variant-style="%1$s" class="utm-card utm-card--%1$s utm-card__outer"><div class="utm-card__wrapper">', $this->props['variant']);
-        $headlinemobile = sprintf('<div class="utm-card__headline__mobile">%1$s</div>', $this->props['heading']);
-        $heading       = sprintf('<div class="utm-card__content"><div class="utm-card__headline">%1$s</div>', $this->props['heading']);
-        $content       = sprintf('<div class="utm-card__body">%1$s</div>', $this->props['textarea']);
-        $buttonwrapper = '<div class="utm-link__container"><div class="utm-card__link">';
+        // Build card structure with proper semantics and ARIA
+        $card_start = sprintf(
+            '<article id="%1$s" class="utm-card utm-card--%2$s utm-card__outer" aria-labelledby="%3$s">',
+            esc_attr($card_id),
+            esc_attr($variant),
+            esc_attr($heading_id)
+        );
 
-        // Build button if URL and text are provided
-        $buttrender = ($button_url && $button_text)
-            ? sprintf('<a href=%1$s class="utm-btn utm-card--%3$s utm-btn--link utm-btn--link-arrow">%2$s<span class="utm-btn--arrow"></span></a></div></div>', 
-                $button_url, 
-                $button_text, 
-                $variant
-            )
-            : '</div></div>';
+        // Single heading for all screen sizes, visually styled differently for mobile
+        $heading = sprintf(
+            '<h2 id="%1$s" class="utm-card__headline">%2$s</h2>',
+            esc_attr($heading_id),
+            esc_html($heading_text)
+        );
 
-        $wrapperend = '</div></div></div></div>';
+        // Card content
+        $content = sprintf(
+            '<div class="utm-card__body">%s</div>',
+            esc_html($body_text)
+        );
 
-        // Assemble final module
-        $module = $wrapperstart . 
-                 $headlinemobile . 
-                 $wrappergroup . 
-                 $cardimage . 
-                 $heading . 
-                 $content . 
-                 $buttonwrapper . 
-                 $buttrender . 
-                 $wrapperend;
+        // Build button with proper ARIA label
+        $button = '';
+        if ($button_url && $button_text) {
+            $button = sprintf(
+                '<div class="utm-link__container">' .
+                '<div class="utm-card__link">' .
+                '<a href="%1$s" class="utm-btn utm-card--%2$s utm-btn--link utm-btn--link-arrow" aria-label="%3$s">' .
+                '%4$s' .
+                '<span class="utm-btn--arrow" aria-hidden="true" role="presentation"></span>' .
+                '</a>' .
+                '</div>' .
+                '</div>',
+                esc_url($button_url),
+                esc_attr($variant),
+                esc_attr(sprintf('%s - %s', $button_text, $heading_text)), // Context for screen readers
+                esc_html($button_text)
+            );
+        }
+
+        // Assemble final module with proper nesting
+        $module = $card_start .
+            '<div class="utm-card__wrapper">' .
+                '<div class="utm-card__group">' .
+                    $cardimage .
+                    '<div class="utm-card__content-wrapper">' .
+                        $heading .
+                        $content .
+                        $button .
+                    '</div>' .
+                '</div>' .
+            '</div>' .
+        '</article>';
 
         return $module;
     }

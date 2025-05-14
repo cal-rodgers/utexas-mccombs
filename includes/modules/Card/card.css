@@ -1,3 +1,32 @@
+/* Accessibility Utilities */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus styles for better keyboard navigation */
+.utm-card a:focus {
+    outline: 2px solid #bf5700;
+    outline-offset: 2px;
+}
+
+.utm-card a:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.utm-card a:focus-visible {
+    outline: 2px solid #bf5700;
+    outline-offset: 2px;
+}
+
+/* Base Card Styles */
 .utm-card__outer {
     padding: 24px;
     border-radius: 10px;
@@ -24,23 +53,44 @@
     word-break: break-word;
   }
   
-  .utm-card__headline, .utm-card__headline__mobile {
+  /* Card Heading Styles */
+  .utm-card__headline {
     font-family: "1883Sans-ExtraBold";
     font-size: 24px;
     line-height: 28px;
     margin-bottom: 15px;
     font-weight: 500;
+    color: #333f48;
+    text-transform: none;
+  }
+
+  /* Reset browser default h2 styles */
+  h2.utm-card__headline {
+    margin: 0 0 15px 0;
+    padding: 0;
+  }
+
+  .utm-card--orange .utm-card__headline {
+    color: #ffffff;
   }
   
   .utm-card__body {
     font-family: "1883Sans-Regular";
     margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: -0.25px;
+    font-weight: 500;
+  }
+
+  .utm-card--orange .utm-card__body {
+    color: #ffffff;
   }
   
   .utm-link__container {
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    padding-right: 20px; /* Space for arrow hover state */
   }
   
   .utm-card__link {
@@ -55,12 +105,20 @@
   }
 
   .utm-card__link a {
-    display: inline;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
+    gap: 8px;
+    max-width: 100%;
+    transition: color 0.3s ease;
   }
 
-  .utm-card__link a > span:first-of-type {
-    display: inline;
+  .utm-card__link a:hover {
+    text-decoration: none;
+    color: #8c3f00; /* Darker orange for hover */
+  }
+
+  .utm-card__link a {
     white-space: normal;
     word-wrap: break-word;
   }
@@ -82,62 +140,54 @@
     width: auto;
   }
   
-  .utm-card .utm-btn--link.utm-btn--link-arrow {
-    line-height: 1.2;
-  }
-  
   .utm-card .utm-btn--link.utm-btn--link-arrow:hover .utm-btn--arrow:before {
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    width: 55px;
-    pointer-events: none;
+    width: 37px;
   }
-  
+
   .utm-card .utm-btn--link.utm-btn--link-arrow:hover .utm-btn--arrow:after {
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    right: -20px;
-    pointer-events: none;
+    right: -4px;
   }
-  
+
   .utm-card .utm-btn--link.utm-btn--link-arrow .utm-btn--arrow {
     display: inline-block;
     position: relative;
-    width: 40px;
-    vertical-align: middle;
-    margin-left: 12px;
+    width: 35px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-left: 8px;
   }
-  
+
+  .utm-card--white .utm-btn--link.utm-btn--link-arrow .utm-btn--arrow,
+  .utm-card--image_top .utm-btn--link.utm-btn--link-arrow .utm-btn--arrow {
+    transform: translateY(5px);
+  }
+
   .utm-card .utm-btn--link.utm-btn--link-arrow .utm-btn--arrow:before {
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
     content: "";
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    display: block;
-    width: 35px;
+    left: 0;
+    width: 27px;
     height: 1px;
-    background-color: #bf5700;
-    pointer-events: none;
+    background: #bf5700;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    transform-origin: left center;
   }
+
   
   .utm-card .utm-btn--link.utm-btn--link-arrow .utm-btn--arrow:after {
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
     content: "";
-    display: block;
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
     right: 0;
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 5px 0 5px 8px;
     border-color: transparent transparent transparent #bf5700;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
     pointer-events: none;
   }
   
@@ -146,6 +196,24 @@
     color: #fff !important;
   }
   
+  .utm-card--orange .utm-card__link {
+    margin-top: 24px;
+  }
+
+  .utm-card--orange .utm-card__link a {
+    color: #ffffff;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+  }
+
+  .utm-card--orange .utm-card__link a:hover,
+  .utm-card--orange .utm-card__link a:focus {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
   .utm-card--orange .utm-card__image {
     margin-right: 20px;
   }
@@ -154,10 +222,9 @@
     -o-object-fit: cover;
     object-fit: cover;
     border-radius: 10px;
-    max-width: none;
   }
   
-  .utm-card--orange .utm-card__headline, .utm-card--orange .utm-card__headline__mobile {
+  .utm-card--orange .utm-card__headline {
     letter-spacing: 0.2px;
   }
   
@@ -183,7 +250,7 @@
     display: none;
   }
   
-  .utm-card--white .utm-card__headline, .utm-card--white .utm-card__headline__mobile {
+  .utm-card--white .utm-card__headline {
     letter-spacing: -1px;
   }
   
@@ -228,7 +295,7 @@
     text-decoration: none;
   }
   
-  .utm-card--image_top .utm-card__headline, .utm-card--image_top .utm-card__headline__mobile {
+  .utm-card--image_top .utm-card__headline {
     letter-spacing: -1px;
   }
   
@@ -238,9 +305,12 @@
     }
     .utm-card__group {
       display: flex;
+      align-items: flex-start;
+      gap: 20px;
     }
-    .utm-card__headline__mobile {
-      display: none;
+    .utm-card__content-wrapper {
+      flex: 1;
+      min-width: 0;
     }
     .utm-card__body {
       font-size: 18px;
@@ -307,9 +377,14 @@
     }
     .utm-card__group {
       display: flex;
+      flex-direction: column;
     }
     .utm-card__headline {
-      display: none;
+      order: -1;
+      margin-bottom: 20px;
+    }
+    .utm-card__content-wrapper {
+      width: 100%;
     }
     .utm-card__body {
       font-size: 16px;
@@ -334,12 +409,10 @@
     .utm-card--image_top .utm-card__group {
       display: block;
     }
-    .utm-card--image_top .utm-card__headline__mobile {
-      display: none;
-    }
     .utm-card--image_top .utm-card__headline {
-      display: inline;
+      display: block;
       padding-top: 0;
+      margin-bottom: 15px;
     }
     .utm-card--zoom .utm-card__group {
       display: block;

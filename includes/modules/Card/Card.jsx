@@ -50,7 +50,7 @@ class Card extends Component {
                                         className={`utm-btn utm-card--${variant} utm-btn--link utm-btn--link-arrow`}
                                         href={button_url}
                                     >
-                                        {button_text}
+                                        <span>{button_text}</span>
                                         <span className="utm-btn--arrow" />
                                     </a>
                                 </div>

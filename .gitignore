@@ -6,14 +6,6 @@ yarn.lock
 package-lock.json
 
 # Build files
-/scripts/builder-bundle.min.js
-/scripts/frontend-bundle.min.js
-/styles/style.min.css
-/styles/backend-style.min.css
-
-# Divi build files
-scripts/*.min.js
-styles/*.min.css
 asset-manifest.json
 
 # Testing

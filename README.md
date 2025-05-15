@@ -8,6 +8,9 @@ This plugin includes the following custom Divi modules:
 
 - Alert
 - Card
+  - Supports multiple variants (orange, white, image_top)
+  - Responsive text wrapping with arrow indicators
+  - Optimized link text layout with 1.2 line height
 - CourseTable
 - CourseTableAll
 - CTA
@@ -104,3 +107,12 @@ This plugin includes the following custom Divi modules:
 
 **Note:** Node.js 14 is specifically required for compatibility with divi-scripts, node-sass, and proper functioning on Apple Silicon machines.
 
+## Changelog
+
+### 2025-05-13
+- Enhanced Card module accessibility:
+  - Improved semantic markup using `<article>` and `<h2>` elements
+  - Added unique IDs and ARIA labels for better screen reader navigation
+  - Implemented proper focus styles for keyboard navigation
+  - Optimized link and button styling for better accessibility
+  - Fixed arrow animation and alignment across all card variants

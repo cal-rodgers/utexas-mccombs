@@ -18,25 +18,42 @@ class Card extends Component {
             button_text
         } = this.props;
 
+        // Generate unique ID for the card
+        const cardId = `utm-card-${Math.random().toString(36).substr(2, 9)}`;
+        const headingId = `${cardId}-heading`;
+
         return (
             <Fragment>
-                <div className={`utm-card utm-card__outer utm-card--${variant}`}>
+                <article 
+                    className={`utm-card utm-card__outer utm-card--${variant}`}
+                    aria-labelledby={headingId}
+                >
                     <div className="utm-card__wrapper">
-                        {/* Mobile headline shown for all variants now */}
-                        <div className="utm-card__headline__mobile">
+                        {/* We'll hide this visually but keep for screen readers */}
+                        <h2 
+                            id={headingId}
+                            className="visually-hidden"
+                        >
                             {heading}
-                        </div>
+                        </h2>
 
                         {/* Card image */}
                         {cardimage && (
-                            <div className="utm-card__image">
-                                <img src={cardimage} alt={alt} />
+                            <div className="utm-card__image" role="presentation">
+                                <img 
+                                    src={cardimage} 
+                                    alt={alt || ''} 
+                                    aria-hidden={!alt}
+                                />
                             </div>
                         )}
 
                         {/* Card content */}
                         <div className="utm-card__content">
-                            <div className="utm-card__headline">
+                            <div 
+                                className="utm-card__headline"
+                                aria-hidden="true"
+                            >
                                 {heading}
                             </div>
                             <div className="utm-card__body">
@@ -49,15 +66,20 @@ class Card extends Component {
                                     <a 
                                         className={`utm-btn utm-card--${variant} utm-btn--link utm-btn--link-arrow`}
                                         href={button_url}
+                                        aria-label={`${button_text} - ${heading}`}
                                     >
                                         <span>{button_text}</span>
-                                        <span className="utm-btn--arrow" />
+                                        <span 
+                                            className="utm-btn--arrow" 
+                                            aria-hidden="true"
+                                            role="presentation"
+                                        />
                                     </a>
                                 </div>
                             )}
                         </div>
                     </div>
-                </div>
+                </article>
             </Fragment>
         );
     }
